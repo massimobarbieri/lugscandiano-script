@@ -26,11 +26,13 @@ DESTINATARIO="hackers@XXXXXXXX" #Correggere indirisso prima di eseguire
 OGGETTO="Riepilogo aggiornamenti del `date +%d\ %b\ %Y`"
 EMAILMESSAGE="/tmp/emailmessage.txt"
 
+#TODO: in teoria questa riga si può eliminare poiché il file viene riscritto
+# ad ogni esecuzione
 rm -rf $EMAILMESSAGE
-
-cat /var/log/dpkg.* |grep 'install\|upgrade' | grep "$(date +%Y-%m-%d)\|$(date +%Y-%m-%d -d '1 day ago')\|$(date +%Y-%m-%d -d '2 day ago')\|$(date +%Y-%m-%d -d '3 day ago')\|$(date +%Y-%m-%d -d '4 day ago')\|$(date +%Y-%m-%d -d '5 day ago')\|$(date +%Y-%m-%d -d '6 day ago')" | grep -v status | grep -v trigproc | uniq > $EMAILMESSAGE
 
 #TODO: Aggiungere un preambolo per far capire alla lista cos'è 
 # il messaggio che stanno ricevendo
+
+cat /var/log/dpkg.* |grep 'install\|upgrade' | grep "$(date +%Y-%m-%d)\|$(date +%Y-%m-%d -d '1 day ago')\|$(date +%Y-%m-%d -d '2 day ago')\|$(date +%Y-%m-%d -d '3 day ago')\|$(date +%Y-%m-%d -d '4 day ago')\|$(date +%Y-%m-%d -d '5 day ago')\|$(date +%Y-%m-%d -d '6 day ago')" | grep -v status | grep -v trigproc | uniq > $EMAILMESSAGE
 
 mail -s "$OGGETTO" "$DESTINATARIO" < $EMAILMESSAGE
