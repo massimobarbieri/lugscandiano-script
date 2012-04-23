@@ -23,7 +23,7 @@
 
 
 DESTINATARIO="hackers@XXXXXXXX" #Correggere indirizzo prima di eseguire
-OGGETTO="Riepilogo aggiornamenti del `date +%d\ %b\ %Y`"
+OGGETTO="Riepilogo aggiornamenti - settimana `date +%y/%W`"
 EMAILMESSAGE="/tmp/emailmessage.txt"
 
 #TODO: in teoria questa riga si può eliminare poiché il file viene riscritto
