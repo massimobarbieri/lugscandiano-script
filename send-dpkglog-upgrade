@@ -33,13 +33,13 @@ rm -rf $EMAILMESSAGE
 #TODO: Aggiungere altre info utili al preambolo (ora esecuzione, errori ecc.) 
 
 echo "Questa email è un messaggio automatico generato dallo script" > $EMAILMESSAGE
-echo "send-dpkglog-upgrade in esecuzione sul server del LUG Scandiano. Lo" >> $EMAILMESSAGE
-echo "scopo dello script è informarti settimanalmente sulla stato di" >> $EMAILMESSAGE
+echo "$0 in esecuzione sul server del LUG Scandiano." >> $EMAILMESSAGE
+echo "Lo script serve per informarti settimanalmente sullo stato di" >> $EMAILMESSAGE
 echo "aggiornamento dei pacchetti presenti sul server." >> $EMAILMESSAGE
 echo "-------------------------------------------------------------------" >> $EMAILMESSAGE
 echo "NOME SCRIPT: $0" >> $EMAILMESSAGE
 echo "DATA ESECUZIONE: `date`" >> $EMAILMESSAGE
-echo "ERRORI:" >> $EMAILMESSAGE
+echo "ERRORI: (servizio non attivo)" >> $EMAILMESSAGE
 echo "GIORNI ANALIZZATI: dal `date +%Y-%m-%d`; al `date +%Y-%m-%d -d '6 day ago'` compresi" >> $EMAILMESSAGE
 echo "-------------------------------------------------------------------" >> $EMAILMESSAGE
 
