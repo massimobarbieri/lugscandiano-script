@@ -1,0 +1,64 @@
+#!/bin/sh
+# ====================================================
+# iptables-rule - Regole iptables
+# ====================================================
+# @authors: Massimo Barbieri (massimo@fsfe.org)
+#	    Alessandro Alboni (alle@inventati.org)
+#           (Add your name if you contribute)
+# ====================================================
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU GENERAL PUBLIC LICENSE
+# License as published by the Free Software Foundation; either 
+# version 3 of the License, or any later version.
+# 
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#  
+# You should have received a copy of the GNU Lesser General Public 
+# License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+###########################################################################
+
+
+
+case "$1" in
+
+'start')
+
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# SSH SERVER
+##############
+iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH
+iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 5 --rttl --name SSH -j LOG --log-prefix "SSH_brute_force "
+iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 5 --rttl --name SSH -j DROP
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# WEBSERVER
+##################
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+
+# MAILMAN
+##################
+iptables -A INPUT -i eth0 -p tcp --dport 25 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT
+
+;;
+
+'stop')
+        iptables -F
+        iptables -P INPUT ACCEPT
+        iptables -P OUTPUT ACCEPT
+        iptables -P FORWARD ACCEPT
+
+        ;;
+*)
+        echo "Usage: $0 { start | stop }"
+        ;;
+esac
+exit 0
