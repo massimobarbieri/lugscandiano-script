@@ -32,12 +32,16 @@ rm -rf $EMAILMESSAGE
 
 #TODO: Aggiungere altre info utili al preambolo (ora esecuzione, errori ecc.) 
 
-echo "Questa email è un messaggio automatico generato dallo " > $EMAILMESSAGE
-echo "script send-dpkglog-upgrade in esecuzione sul server " >> $EMAILMESSAGE
-echo "del LUG Scandiano. Lo scopo dello script è informarti" >> $EMAILMESSAGE
-echo "settimanalmente sullo stato di aggiornamento dei pacchetti" >> $EMAILMESSAGE
-echo "presenti sul server." >> $EMAILMESSAGE
-echo "----------------------------------------------------------" >> $EMAILMESSAGE
+echo "Questa email è un messaggio automatico generato dallo script" > $EMAILMESSAGE
+echo "send-dpkglog-upgrade in esecuzione sul server del LUG Scandiano. Lo" >> $EMAILMESSAGE
+echo "scopo dello script è informarti settimanalmente sulla stato di" >> $EMAILMESSAGE
+echo "aggiornamento dei pacchetti presenti sul server." >> $EMAILMESSAGE
+echo "-------------------------------------------------------------------" >> $EMAILMESSAGE
+echo "NOME SCRIPT: $0" >> $EMAILMESSAGE
+echo "DATA ESECUZIONE: `date`" >> $EMAILMESSAGE
+echo "ERRORI:" >> $EMAILMESSAGE
+echo "GIORNI ANALIZZATI: dal `date +%Y-%m-%d`; al `date +%Y-%m-%d -d '6 day ago'` compresi" >> $EMAILMESSAGE
+echo "-------------------------------------------------------------------" >> $EMAILMESSAGE
 
 
 # TODO: I duplicati non sempre vengono riconosciuti correttamente a causa 
