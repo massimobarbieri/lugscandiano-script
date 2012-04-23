@@ -22,7 +22,7 @@
 ###########################################################################
 
 
-DESTINATARIO="hackers@XXXXXXXX" #Correggere indirisso prima di eseguire
+DESTINATARIO="hackers@XXXXXXXX" #Correggere indirizzo prima di eseguire
 OGGETTO="Riepilogo aggiornamenti del `date +%d\ %b\ %Y`"
 EMAILMESSAGE="/tmp/emailmessage.txt"
 
