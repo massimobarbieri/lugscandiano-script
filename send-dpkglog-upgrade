@@ -30,13 +30,12 @@ EMAILMESSAGE="/tmp/emailmessage.txt"
 # ad ogni esecuzione
 rm -rf $EMAILMESSAGE
 
-#TODO: Aggiungere un preambolo per far capire alla lista cos'è 
-# il messaggio che stanno ricevendo
+#TODO: Aggiungere altre info utili al preambolo (ora esecuzione, errori ecc.) 
 
 echo "Questa email è un messaggio automatico generato dallo " > $EMAILMESSAGE
 echo "script send-dpkglog-upgrade in esecuzione sul server " >> $EMAILMESSAGE
 echo "del LUG Scandiano. Lo scopo dello script è informarti" >> $EMAILMESSAGE
-echo "settimanalmente sulla stato di aggiornamento dei pacchetti" >> $EMAILMESSAGE
+echo "settimanalmente sullo stato di aggiornamento dei pacchetti" >> $EMAILMESSAGE
 echo "presenti sul server." >> $EMAILMESSAGE
 echo "----------------------------------------------------------" >> $EMAILMESSAGE
 
