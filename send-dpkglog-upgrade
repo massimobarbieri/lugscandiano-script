@@ -52,3 +52,4 @@ echo "-------------------------------------------------------------------" >> $E
 cat /var/log/dpkg.* |grep 'install\|upgrade' | grep "$(date +%Y-%m-%d)\|$(date +%Y-%m-%d -d '1 day ago')\|$(date +%Y-%m-%d -d '2 day ago')\|$(date +%Y-%m-%d -d '3 day ago')\|$(date +%Y-%m-%d -d '4 day ago')\|$(date +%Y-%m-%d -d '5 day ago')\|$(date +%Y-%m-%d -d '6 day ago')" | grep -v status | grep -v trigproc | uniq >> $EMAILMESSAGE
 
 mail -s "$OGGETTO" "$DESTINATARIO" < $EMAILMESSAGE
+logger Inviata email con i log degli aggiornamenti -t LUG
