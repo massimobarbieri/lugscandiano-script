@@ -40,7 +40,7 @@ echo "-------------------------------------------------------------------" >> $E
 echo "NOME SCRIPT: $0" >> $EMAILMESSAGE
 echo "DATA ESECUZIONE: `date`" >> $EMAILMESSAGE
 echo "ERRORI: (servizio non attivo)" >> $EMAILMESSAGE
-echo "GIORNI ANALIZZATI: dal `date +%Y-%m-%d`; al `date +%Y-%m-%d -d '6 day ago'` compresi" >> $EMAILMESSAGE
+echo "GIORNI ANALIZZATI: dal `date +%Y-%m-%d -d '6 day ago'` al `date +%Y-%m-%d` compresi" >> $EMAILMESSAGE
 echo "-------------------------------------------------------------------" >> $EMAILMESSAGE
 
 
