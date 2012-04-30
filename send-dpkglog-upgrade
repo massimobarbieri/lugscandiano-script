@@ -53,3 +53,5 @@ cat /var/log/dpkg.* |grep 'install\|upgrade' | grep "$(date +%Y-%m-%d)\|$(date +
 
 mail -s "$OGGETTO" "$DESTINATARIO" < $EMAILMESSAGE
 logger Inviata email con i log degli aggiornamenti -t LUG
+
+exit 0
