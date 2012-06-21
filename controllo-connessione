@@ -1,0 +1,34 @@
+#!/bin/bash
+
+TAG="CHECK-CONNESSIONE"
+     
+TTL1=$(ping -c 1 155.185.1.2 | grep icmp_req | awk '{print $6}' | sed 's/ttl=//g') #UNIMORE1
+TTL2=$(ping -c 1 155.185.1.5 | grep icmp_req | awk '{print $6}' | sed 's/ttl=//g') #UNIMORE2
+TTL3=$(ping -c 1 74.125.232.120 | grep icmp_req | awk '{print $6}' | sed 's/ttl=//g') #GOOGLE
+TTL4=$(ping -c 1 193.43.189.97 | grep icmp_req | awk '{print $6}' | sed 's/ttl=//g') #GATEWAY
+     
+     
+if  [ "$TTL1" > 0 ] ; then
+	echo "connessione di rete attiva"
+	logger La connessione a UNIMORE1 risulta attiva -t $TAG
+	exit 0
+elif [ "$TTL2" > 0 ] ; then
+	echo "connessione di rete attiva"
+	logger La connessione a UNIMORE2 risulta attiva -t $TAG
+	exit 0
+elif [ "$TTL3" > 0 ] ; then
+	echo "connessione di rete attiva"
+	logger La connessione GOOGLE3 risulta attiva -t $TAG
+	exit 0
+elif [ "$TTL4" > 0 ] ; then
+	echo "connessione di rete attiva"
+	logger La connessione GETEWAY4 risulta attiva -t $TAG
+	# FORSE A QUESTO PUNTO POTREBBE INVIARE UN WARNING ALLA ML
+	exit 0
+else
+	#echo -e "Riavviato alle ore `date +%H:%M` del `date +%a\ %d\ %b\ %Y`" >> /var/log/riavvio.log
+	logger Conessione assente riavvio il server -t $TAG
+	reboot ;
+	exit 1
+fi
+
