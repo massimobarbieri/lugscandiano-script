@@ -8,19 +8,19 @@ TTL3=$(ping -c 1 74.125.232.120 | grep icmp_req | awk '{print $6}' | sed 's/ttl=
 TTL4=$(ping -c 1 193.43.189.97 | grep icmp_req | awk '{print $6}' | sed 's/ttl=//g') #GATEWAY
      
      
-if  [ "$TTL1" > 0 ] ; then
+if  [ "$TTL1" -ge 0 ] ; then
 	echo "connessione di rete attiva"
 	logger La connessione a UNIMORE1 risulta attiva -t $TAG
 	exit 0
-elif [ "$TTL2" > 0 ] ; then
+elif [ "$TTL2" -ge 0 ] ; then
 	echo "connessione di rete attiva"
 	logger La connessione a UNIMORE2 risulta attiva -t $TAG
 	exit 0
-elif [ "$TTL3" > 0 ] ; then
+elif [ "$TTL3" -ge 0 ] ; then
 	echo "connessione di rete attiva"
 	logger La connessione GOOGLE3 risulta attiva -t $TAG
 	exit 0
-elif [ "$TTL4" > 0 ] ; then
+elif [ "$TTL4" -ge 0 ] ; then
 	echo "connessione di rete attiva"
 	logger La connessione GETEWAY4 risulta attiva -t $TAG
 	# FORSE A QUESTO PUNTO POTREBBE INVIARE UN WARNING ALLA ML
